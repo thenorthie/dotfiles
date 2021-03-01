@@ -1,13 +1,13 @@
 <#
 .Synopsis
-    Install TsekNet dotfiles.
+    Install Thenorthie dotfiles.
 .DESCRIPTION
     Used for one-line PC setup. Includes package installs, profile download, etc.
     TODO: Fill this in with detailed steps
 #>
 
 ################################################################################
-# Package Management (https://tseknet.com/blog/chocolatey)                     #
+# Package Management                                                           #
 ################################################################################
 
 Write-Host 'Configuring Chocolatey...' -ForegroundColor Magenta
@@ -54,23 +54,20 @@ $DESIRED_PACKAGES = @(
   'chezmoi'
   'git'
   'gitversion.portable'
-  'google-backup-and-sync'
-  'googlechrome'
-  'greenshot'
   'microsoft-edge'
   'microsoft-windows-terminal'
-  'mpc-hc'
-  'notepadplusplus'
   'openssh'
   'powershell-preview'
   'python3'
   'spotify'
   'starship'
-  'steam'
   'treesizefree'
+  'vscode'
   'vscode-insiders'
+  'powertoys'
 )
 
+#sql-server-management-studio
 $missing_packages = [System.Collections.ArrayList]::new()
 foreach ($package in $DESIRED_PACKAGES) {
   if (-not (Test-ChocolateyPackageInstalled($package))) {
@@ -94,7 +91,7 @@ if (-not (Test-ChocolateyPackageInstalled('choco-upgrade-all-at'))) {
 Write-Host 'Configuring GitHub SSH key...' -ForegroundColor Magenta
 
 # Use OpenSSH ssh-keygen rather than the one in path
-& "$env:ProgramFiles\OpenSSH-Win64\ssh-keygen.exe" -t ed25519 -C 'admin@tseknet.com'
+& "$env:ProgramFiles\OpenSSH-Win64\ssh-keygen.exe" -t ed25519 -C 'taylor.north@thenorthie.com'
 ssh-add "$env:USERPROFILE/.ssh/id_ed25519"
 
 # Copy resulting output to GitHub
@@ -106,7 +103,7 @@ Write-Host ']'
 
 # Wait until key is added to GitHub
 Write-Output 'Launching chrome to add SSH key. Press any key to continue...'
-Start-Process chrome 'https://github.com/settings/ssh/new'
+Start-Process msedge 'https://github.com/settings/ssh/new'
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
 
 ################################################################################
@@ -115,4 +112,5 @@ $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
 
 Write-Host 'Configuring Chezmoi...' -ForegroundColor Magenta
 
-chezmoi init --apply --verbose git@github.com:tseknet/dotfiles.g
+chezmoi init --apply --verbose git@github.com:thenorthie/dotfiles.git
+chezmoi diff
