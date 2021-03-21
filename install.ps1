@@ -59,7 +59,6 @@ $DESIRED_PACKAGES = @(
   'openssh'
   'powershell-preview'
   'python3'
-  'spotify'
   'starship'
   'treesizefree'
   'vscode'
