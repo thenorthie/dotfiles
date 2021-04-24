@@ -1,0 +1,1 @@
+. "$env:HOMEDRIVE\$env:HOMEPATH\.config\profile.ps1"
