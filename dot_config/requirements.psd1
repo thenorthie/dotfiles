@@ -14,7 +14,6 @@
       DependsOn  = 'PowerShellGet'
       Install    = $false
       Parameters = @{
-        AllowPrerelease = $true
       }
     }
   }

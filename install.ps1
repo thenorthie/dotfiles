@@ -142,7 +142,7 @@ Write-Host ']'
 
 # Wait until key is added to GitHub
 Write-Output 'Launching chrome to add SSH key. Press any key to continue...'
-Start-Process chrome 'https://github.com/settings/ssh/new'
+Start-Process msedge 'https://github.com/settings/ssh/new'
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
 
 ################################################################################
