@@ -38,7 +38,7 @@ truncation_length = 4
 home_symbol = "🏠"
 
 [character]
-error_symbol = "[❯](bold red)"
+error_symbol = "[✗](bold red)"
 
 [status]
 symbol = "‼️"
@@ -62,6 +62,7 @@ disabled = false
 "/mnt/d/Projects" = "🎨"
 "C:/Users/TaylorNorth/Documents" = "🦄"
 "H:/" = "🧪"
+"H:" = "🧪"
 "E:/" = "🧰"
 
 [custom.workspace]
