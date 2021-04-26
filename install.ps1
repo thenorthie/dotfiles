@@ -42,6 +42,7 @@ param (
     'chezmoi'
     'git'
     'gitversion.portable'
+    'github-desktop'
     'microsoft-edge'
     'microsoft-windows-terminal'
     'openssh'
