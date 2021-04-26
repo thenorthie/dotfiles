@@ -60,7 +60,7 @@ disabled = false
 "D:/Projects" = "🎨"
 "/mnt/d/projects" = "🎨"
 "/mnt/d/Projects" = "🎨"
-"C:\Users\TaylorNorth\Documents" = "🦄"
+"C:/Users/TaylorNorth/Documents" = "🦄"
 
 [custom.workspace]
 command = "echo -n $PWD | cut -d / -f 6"
