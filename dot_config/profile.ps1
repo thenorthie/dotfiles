@@ -141,7 +141,7 @@ Add-Module -Name 'PSWriteHTML' -Version 0.0.131
 # Update the console title with current PowerShell elevation and version       #
 ################################################################################
 $Host.UI.RawUI.WindowTitle = "PS | v$($PSVersionTable.PSVersion.Major).$($PSVersionTable.PSVersion.Minor) | $((Invoke-WebRequest wttr.in/perth_australia?format="%c%t").content)"
-
+Clear-Host
 ################################################################################
 # PSReadLine and prompt options                                                #
 ################################################################################
@@ -181,6 +181,16 @@ Set-Alias -Name ll -Value Get-ChildItemColor -Scope Global -Option AllScope
 Set-Alias -Name ls -Value Get-ChildItemColorFormatWide -Scope Global -Option AllScope
 Set-Alias -Name History -Value Open-HistoryFile -Scope Global -Option AllScope
 
+Get-Uptime = "Greetings Professor Falken, Shall we play a game?"
+Clear-Host
+Write-Host " -------------------------------------------------------------------------------------------------------" -ForegroundColor Green
+Write-Host " ¦`tComputerName:`t`t" -nonewline -ForegroundColor Green;Write-Host $($env:COMPUTERNAME)"`t`t`t`t" -nonewline -ForegroundColor Cyan;Write-Host "UserName:`t" -nonewline -ForegroundColor Green;Write-Host $env:UserDomain\$env:UserName"`t`t" -nonewline -ForegroundColor Cyan;Write-Host " ¦" -ForegroundColor Green
+Write-Host " ¦`tLogon Server:`t`t" -nonewline -ForegroundColor Green;Write-Host $($env:LOGONSERVER)"`t`t`t`t" -nonewline -ForegroundColor Cyan;Write-Host "IP Address:`t" -nonewline -ForegroundColor Green;Write-Host $IPAddress"`t`t" -nonewline -ForegroundColor Cyan;Write-Host " ¦" -ForegroundColor Green
+Write-Host " ¦`tPS Execution Policy:`t" -nonewline -ForegroundColor Green;Write-Host $($PSExecPolicy)"`t`t`t" -nonewline -ForegroundColor Cyan;Write-Host "PS Version:`t" -nonewline -ForegroundColor Green;Write-Host $PSVersion"`t`t`t" -nonewline -ForegroundColor Cyan;Write-Host " ¦" -ForegroundColor Green
+Write-Host " ¦`tUptime:`t`t`t" -nonewline -ForegroundColor Green;Write-Host $(Get-Uptime)"`t`t`t`t`t`t" -nonewline -ForegroundColor Cyan;Write-Host " ¦" -ForegroundColor Green
+Write-Host " -------------------------------------------------------------------------------------------------------`n" -ForegroundColor Green
+Write-Host "Customs functions : Get-Uptime / Get-Time / RDP <IPAddr>`n" -ForegroundColor Yellow; 
+
 ################################################################################
 # Always start in the same directory                                           #
 ################################################################################
@@ -189,5 +199,7 @@ if (-not (Test-Path $TMP_DIR)) {
   New-Item -ItemType Directory -Path $TMP_DIR -Force
 }
 Set-Location $TMP_DIR
+
+Write-Host ""
 
 #endregion

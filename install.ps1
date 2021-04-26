@@ -126,6 +126,30 @@ Write-Host 'Installing PowerShell modules...' -ForegroundColor Magenta
 Invoke-PSDepend -Path "$ModuleFilePath\requirements.psd1" -Import -Force
 
 ################################################################################
+# Download & Install OpenSSH                                                   #
+################################################################################
+# Define the OpenSSH latest release url
+$url = 'https://github.com/PowerShell/Win32-OpenSSH/releases/latest/'
+# Create a web request to retrieve the latest release download link
+ $request = [System.Net.WebRequest]::Create($url)
+ $request.AllowAutoRedirect=$false
+ $response=$request.GetResponse()
+ $source = $([String]$response.GetResponseHeader("Location")).Replace('tag','download') + '/OpenSSH-Win64.zip'
+# Download the latest OpenSSH for Windows package to the current working directory
+ $webClient = [System.Net.WebClient]::new()
+ $webClient.DownloadFile($source, (Get-Location).Path + '\OpenSSH-Win64.zip')
+
+ # Extract the ZIP to a temporary location
+ Expand-Archive -Path .\OpenSSH-Win64.zip -DestinationPath ($env:temp) -Force
+
+ #Move the extracted ZIP Contents from the Temporary location to C:\Program Files\OpenSSH\
+ Move-Item "$($env:temp)\OpenSSh-Win64" -Destination "C:\Program Files\OpenSSH-Win64\" -Force
+
+ #Unblock the files in C:\Program Files\OpenSSH
+ Get-ChildItem -Path "C:\Program Files\OpenSSH-Win64\" | Unblock-File
+
+
+################################################################################
 # GitHub setup                                                                 #
 ################################################################################
 Write-Host 'Configuring GitHub SSH key...' -ForegroundColor Magenta
